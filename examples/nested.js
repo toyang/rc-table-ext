@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Table from 'rc-table';
-import 'rc-table/assets/index.less';
+import Table from 'rc-table-ext';
+import 'rc-table-ext/assets/index.less';
 
 const columns = [
   { title: 'First Name', dataIndex: 'names.first', key: 'a', width: 100 },

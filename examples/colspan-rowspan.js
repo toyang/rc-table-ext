@@ -1,8 +1,8 @@
 /* eslint-disable no-console,func-names,react/no-multi-comp */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Table from 'rc-table';
-import 'rc-table/assets/index.less';
+import Table from 'rc-table-ext';
+import 'rc-table-ext/assets/index.less';
 
 const columns = [
   { title: '手机号', dataIndex: 'a', colSpan: 2, width: 100, key: 'a', render(o, row, index) {

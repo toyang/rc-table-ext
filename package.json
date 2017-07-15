@@ -88,6 +88,5 @@
     "react-test-renderer": "^15.5.4"
   },
   "pre-commit": [
-    "lint"
   ]
 }
