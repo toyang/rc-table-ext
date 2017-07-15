@@ -1,4 +1,4 @@
-# rc-table
+# rc-table-ext
 
 React table component.
 
