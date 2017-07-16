@@ -9,9 +9,6 @@ import ColumnManager from './ColumnManager';
 import createStore from './createStore';
 import classes from 'component-classes';
 
-import 'react-contexify/dist/ReactContexify.min.css';
-import { ContextMenu, Item, Separator, IconFont } from 'react-contexify';
-
 export default class Table extends React.Component {
   static propTypes = {
     data: PropTypes.array,
@@ -756,22 +753,6 @@ export default class Table extends React.Component {
       ? <div className={`${prefixCls}-scroll`}>{content}</div>
       : content;
 
-    const MyAwesomeMenu = () => (
-    <ContextMenu id='menu_id'>
-        <Item>
-            Add
-        </Item>
-        <Item>
-            Remove
-        </Item>
-        <Item>cut</Item>
-        <Separator/>
-        <Item disabled>
-            Paste
-        </Item>
-    </ContextMenu>
-);
-
     return (
       <div ref={node => (this.tableNode = node)} className={className} style={props.style}>
         {this.getTitle()}
@@ -786,7 +767,6 @@ export default class Table extends React.Component {
             {this.getRightFixedTable()}
           </div>}
         </div>
-        <MyAwesomeMenu/>
       </div>
     );
   }

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import TableCell from './TableCell';
 import ExpandIcon from './ExpandIcon';
 
-import { ContextMenuProvider, menuProvider } from 'react-contexify';
-
 export default class TableRow extends React.Component {
   static propTypes = {
     onDestroy: PropTypes.func,
@@ -194,7 +192,7 @@ export default class TableRow extends React.Component {
     }
 
     return (
-      <ContextMenuProvider id="menu_id" renderTag="tr"
+      <tr
         ref={(node) => (this.trRef = node)}
         onClick={this.onRowClick}
         onDoubleClick={this.onRowDoubleClick}
@@ -204,7 +202,7 @@ export default class TableRow extends React.Component {
         style={style}
       >
         {cells}
-      </ContextMenuProvider>
+      </tr>
     );
   }
 }
