@@ -1,7 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import TableCell from './TableCell';
 import ExpandIcon from './ExpandIcon';
+
+import {ContextMenu, Item, Separator} from 'react-contexify-ext';
+import 'react-contexify-ext/dist/ReactContexify.min.css';
 
 export default class TableRow extends React.Component {
   static propTypes = {
@@ -133,6 +137,48 @@ export default class TableRow extends React.Component {
     }
   }
 
+  onDestroyContextMenu = () => {
+    console.log('onDestroyContextMenu');
+    let div = this.contextMenuContainer;
+    if(div){
+      ReactDOM.unmountComponentAtNode(div);
+      document.body.removeChild(div);
+    }
+  }
+
+  onContextMenu = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('onContextMenu',event);
+
+    let onContextMenuItemClick = () => {
+      console.log('item click', this);
+      console.log('item click', this.props.record);
+      this.onDestroyContextMenu();
+    }
+
+    onContextMenuItemClick = onContextMenuItemClick.bind(this);
+
+    const myAwesomeMenu = (
+      <ContextMenu onDestroyContextMenu={this.onDestroyContextMenu} event={event}>
+          <Item onClick={onContextMenuItemClick}>
+              Add
+          </Item>
+          <Item>
+              Remove
+          </Item>
+          <Item>cut</Item>
+          <Separator/>
+          <Item disabled>
+              Paste
+          </Item>
+      </ContextMenu>
+    );
+    this.contextMenuContainer = document.createElement('div');
+    document.body.appendChild(this.contextMenuContainer);
+    ReactDOM.render(myAwesomeMenu, this.contextMenuContainer);
+  }
+
   render() {
     const {
       prefixCls, columns, record, visible, index,
@@ -194,6 +240,7 @@ export default class TableRow extends React.Component {
     return (
       <tr
         ref={(node) => (this.trRef = node)}
+        onContextMenu={this.onContextMenu}
         onClick={this.onRowClick}
         onDoubleClick={this.onRowDoubleClick}
         onMouseEnter={this.onMouseEnter}
